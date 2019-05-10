@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+<title>Quiz Questions And Answers</title>
+</head>
+
+<body>
+<center> <h1>Just Another Quiz</h1> </center>
+<p>
+<form name="quiz">
+
+  <!-- We are creating a form that will contain all of our quiz info. I'm using radio buttons to make it 
+  so the user can select which of the choices they believe is correct.  -->
+<p>
+
+<b>Question 1.
+<br>Who is the strongest?<br></b>
+<blockquote>
+<input type="radio" name="q1" value="Thanos">Thanos<br>
+<input type="radio" name="q1" value="Thor">Thor<br>
+<input type="radio" name="q1" value="Shaggy">Shaggy<br>
+</blockquote>
+
+<p><b>
+<hr>
+Question 2.
+<br>Which of these films is set in a galaxy far far away?<br></b>
+<blockquote>
+<input type="radio" name="q2" value="Star Wars">Star Wars<br>
+<input type="radio" name="q2" value="Super Mario">Super Mario<br>
+<input type="radio" name="q2" value="Indiana Jones">Indiana Jones<br>
+</blockquote>
+
+<p><b>
+<hr>
+Question 3.
+<br>Which of these is a cartoon created in the 1990's?<br></b>
+<blockquote>
+<input type="radio" name="q3" value="Bugs Bunny">Bugs Bunny<br>
+<input type="radio" name="q3" value="Spongebob">Spongebob<br>
+<input type="radio" name="q3" value="Ben 10">Ben 10<br>
+</blockquote>
+
+<p><b>
+<hr>
+Question 4.
+<br>What is the worst movie of all time?<br></b>
+<blockquote>
+<input type="radio" name="q4" value="Tokyo Drift">Tokyo Drift<br>
+<input type="radio" name="q4" value="Twilight">Twilight<br>
+<input type="radio" name="q4" value="50 Shades of Gray">50 Shades of Gray<br>
+</blockquote>
+
+<p><b>
+<hr>
+Question 5.
+<br>What's 9+10?<br></b>
+<blockquote>
+<input type="radio" name="q5" value="10">10<br>
+<input type="radio" name="q5" value="19">19<br>
+<input type="radio" name="q5" value="21">21<br>
+</blockquote>
+
+<!-- The functions below will allow us to pull the values of each answer attached to the radio 
+button elements and will be called upon with this this element. There is also a reset button 
+that will allow the user to clear the form.  -->
+
+<input type="button"value="Grade Me"onClick="getScore(this.form);">
+<input type="reset" value="Clear"><p>
+
+Score  = <input type=text name="percentage"><br>
+
+</form>
+
+<p>
+<form method="post" name="Form" onsubmit="" action="">
+
+</form>
+</body>
+<script>
+
+var numQues = 5;
+var numChoi = 3;
+
+// Our answers are being stored in this array. The code knows to look here for the answers because of the this function 
+//defined above and the array below will help identify which of the choices are the correct choice.
+
+var answers = new Array(5);
+answers[0] = "Shaggy";
+answers[1] = "Star Wars";
+answers[2] = "Spongebob";
+answers[3] = "Tokyo Drift";
+answers[4] = "21";
+
+//The following functions are to generate the score for our app. we are defining variables that we will need in 
+//future functions so the app knows where to look when checking how many questions the user got right.
+
+function getScore(form) {
+var score = 0;
+var currElt;
+var currSelection;
+
+for (i=0; i<numQues; i++) {
+currElt = i*numChoi;
+answered=false;
+for (j=0; j<numChoi; j++) {
+currSelection = form.elements[currElt + j];
+if (currSelection.checked) {
+answered=true;
+if (currSelection.value == answers[i]) {
+score++;
+break;
+}}}
+
+if (answered ===false){alert("You cannot submit your quiz until all questions have been answered.") ;return false;}
+}
+
+var scoreper = Math.round(score/numQues*100);
+form.percentage.value = scoreper + "%";
+form.mark.value=score;
+}
+
+
+ 
+</script>
+</html>
